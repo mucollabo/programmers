@@ -19,4 +19,6 @@ function solution(a, b) {
     return dayOfWeek;
 };
 
-console.log(solution(5, 24));
+const s = solution(5, 24);
+
+console.log(s);
