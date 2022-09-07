@@ -28,19 +28,13 @@ n	lost	reserve	    return
 
 function greedyTrainningClothes(n, lost, reserve) {
     let maxNum = n - lost.length;
-    const s_lost = lost.sort((a,b)=>a-b);
     const s_reserve = reserve.sort((a,b)=>a-b);
+    const filtered_lost = lost.filter(element => {
+        if(reserve.includes(element)) maxNum++;
+        return !reserve.includes(element)
+    }).sort((a,b) => a-b);
 
-    for(let i=0; i < s_lost.length; i++) {
-        if(s_reserve.includes(s_lost[i])) {
-            s_reserve.splice(s_reserve.indexOf(s_lost[i]), 1);
-            s_lost.splice(s_lost.indexOf(s_lost[i]), 1);
-            maxNum++;
-            i--;
-        }
-    }
-
-    for (let i of s_lost) {
+    for (let i of filtered_lost) {
         if (s_reserve.includes(i + 1)) {
             s_reserve.splice(s_reserve.indexOf(i + 1), 1);
             maxNum++;
@@ -54,12 +48,12 @@ function greedyTrainningClothes(n, lost, reserve) {
 }
 
 // testcase
-// console.log(greedyTrainningClothes(5, [2,4], [1,3,5]));
-// console.log(greedyTrainningClothes(5, [2,4], [3]));
-// console.log(greedyTrainningClothes(3, [3], [1]));
-// console.log(greedyTrainningClothes(5, [2,3,4], [1,3,5]));
-// console.log(greedyTrainningClothes(6, [2,3,4], [1,3,6]));
-// console.log(greedyTrainningClothes(6, [2,3,4], [2,3,6]));
-// console.log(greedyTrainningClothes(6, [2,3,4], [1,3,6,2,4,5]));
+console.log(greedyTrainningClothes(5, [2,4], [1,3,5]));
+console.log(greedyTrainningClothes(5, [2,4], [3]));
+console.log(greedyTrainningClothes(3, [3], [1]));
+console.log(greedyTrainningClothes(5, [2,3,4], [1,3,5]));
+console.log(greedyTrainningClothes(6, [2,3,4], [1,3,6]));
+console.log(greedyTrainningClothes(6, [2,3,4], [2,3,6]));
+console.log(greedyTrainningClothes(6, [2,3,4], [1,3,6,2,4,5]));
 console.log(greedyTrainningClothes(5, [4,2], [3,5]));
-// console.log(greedyTrainningClothes(5, [1,2], [2,3]));
+console.log(greedyTrainningClothes(5, [1,2], [2,3]));
