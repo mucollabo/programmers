@@ -42,10 +42,10 @@ const solution = (X, Y) => {
             Y = Y.replace(x, '')
         }
     }
-
+    const setR = new Set(r)
     if(r.length === 0) {
         return "-1"
-    } else if((new Set(r)).size == 1 && (new Set(r)).has('0')) {
+    } else if(setR.size === 1 && setR.has('0')) {
         return "0"
     } else {
         return r.sort((a,b)=>{return b-a}).join('')
